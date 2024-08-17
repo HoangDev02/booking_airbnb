@@ -1,0 +1,33 @@
+.payment-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: left;
+    left: 85%;
+  }
+  
+  .payment-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .payment-form input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .purchase-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .purchase-btn:hover {
+    background-color: #c0392b;
+  }
+  

@@ -1,0 +1,25 @@
+/* room.css */
+
+.image-row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Canh các phần tử con theo chiều dọc của container */
+  }
+  
+  .image-col {
+    padding: 0;
+  }
+  
+  .inner-col {
+    display: flex;
+    justify-content: center; /* Canh hình ảnh theo chiều ngang của container */
+  }
+  
+  .image {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+  }
+  .booking-grid {
+    border: 1px solid #e0e0e0;
+  }

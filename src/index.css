@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.navbar-hover {
+  @apply hover:bg-slate-200 hover:rounded-2xl p-2;
+}
