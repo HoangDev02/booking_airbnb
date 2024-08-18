@@ -19,6 +19,7 @@ import BookingPage from "./pages/Booking/BookingPage";
 import HotelRentalPage from "./pages/HotelRental/HotelRentalPage";
 import ListleaveHotelPage from "./pages/listLeaveHotel/ListleaveHotelPage";
 import VnPayReturn from "./pages/vnpay/VnPayReturn";
+import LeasePage from "./pages/leasePage/LeasePage";
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +40,9 @@ function App() {
         <Route path="/Booking" element={<BookingPage/>}/>
         <Route path="/host/homes" element={<HotelRentalPage/>}/>
         <Route path="/vnpay/return?" element={<VnPayReturn/>}/>
+      
+        {/* lease */}
+        <Route path="/hosting" element={<LeasePage/>}/>
       </Routes>
     </BrowserRouter>
 

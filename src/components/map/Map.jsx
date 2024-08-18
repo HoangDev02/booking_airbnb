@@ -29,7 +29,6 @@ const Map = ({ data,close }) => {
 
   // State variables
   const [markers, setMarkers] = useState([]);
-
   useEffect(() => {
     if (mapContainerRef.current) {
       const searchControl = new L.Control.Search({
@@ -62,7 +61,6 @@ const Map = ({ data,close }) => {
         name: hotel.name,
         photos: hotel.photos,
       }));
-      console.log("hotelMarkers",hotelMarkers);
       setMarkers(hotelMarkers);
     }
   }, [data]);

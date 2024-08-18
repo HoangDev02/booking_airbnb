@@ -13,7 +13,7 @@ export const createHotel = async (hotelData, accessToken,navigater) => {
     if(response.status === 200){
       navigater("/")
     }
-    return response.data;
+    return response.data; 
   } catch (error) {
     throw new Error(error.response.data);
   }

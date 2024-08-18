@@ -15,7 +15,7 @@ function RoomDetail() {
   const [max, setMax] = useState(0);
   const [options, setOptions] = useState({ adult: 1, children: 0, room: 1 });
   const [room, setRoom] = useState(null);
- 
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}api/hotels/find/${slug}`)
@@ -25,19 +25,20 @@ function RoomDetail() {
       .catch((error) => {
         console.error("There was an error!", error);
       });
-  }, [slug]); 
-  
+  }, [slug]);
+
   if (!room) {
     return <div>Loading...</div>;
   }
   return (
-    <div className="container">
-      <RoomImg data={room} />
+    <>
+      <div className="container p-2">
+        <RoomImg data={room} />
 
-      <Comments hotelId={room.id}/>
-     
+        <Comments hotelId={room.id} />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

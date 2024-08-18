@@ -18,7 +18,7 @@ function Vnpay({ data }) {
       if (!user) {
         throw new Error("User is not authenticated.");
       }
-
+      
       const roomSubtotal = rooms.reduce((total, room) => total + room.price, 0);
       const roomData = rooms.map((room) => ({
         roomId: room.roomId,

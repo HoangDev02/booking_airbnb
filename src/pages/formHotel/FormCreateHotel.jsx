@@ -6,19 +6,21 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-function FormCreateHotel({ onclose, data }) {
+function FormCreateHotel({ onclose, data, location }) {
   const user = useSelector((state) => state.auth.login.currentUser);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    category: "",
+    categoryId: 0,
     name: "",
     type: "",
-    city: "",
-    address: data.address || "",
+    city: location.city ||"",
+    address: location.road + ", " + location.quarter + "," + location.suburb || "",
     distance: "",
     photos: [],
     title: "",
     desc: "",
+    slug: "",
     lat: data?.latlng[0],
     long: data?.latlng[1],
     rating: 0,
@@ -56,11 +58,11 @@ function FormCreateHotel({ onclose, data }) {
           formDataToSend.append(key, formData[key]);
         }
       });
-      await createHotel(formDataToSend, user?.accessToken,navigate);
+      await createHotel(formDataToSend, user?.access_token,navigate);
       toast.success("Tạo khách sạn thành công!");
       
       setFormData({
-        category: "",
+        categoryId: 0,
         name: "",
         type: "",
         city: "",
@@ -70,6 +72,7 @@ function FormCreateHotel({ onclose, data }) {
         title: "",
         desc: "",
         rating: 0,
+        slug: "",
         cheapestPrice: 0,
         featured: false,
       });
@@ -84,6 +87,7 @@ function FormCreateHotel({ onclose, data }) {
       setIsCategoryData(data);
     });
   }, []);
+  console.log(formData);
   
   return (
     <div className="fixed inset-0 items-center justify-center bg-gray-800 bg-opacity-50 z-50 ">
@@ -95,13 +99,13 @@ function FormCreateHotel({ onclose, data }) {
         <ToastContainer />
         <select
           className="bg-gray-50 border border-gray-300 my-3 text-gray-900 text-sm rounded-lg"
-          value={formData.category}
+          value={formData.categoryId}
           onChange={handleChange}
-          name="category"
+          name="categoryId"
         >
           <option value="">Chọn thể loại</option>
           {isCategoryData?.map((data) => (
-            <option value={data._id} key={data._id}>
+            <option value={data.id} key={data.id}>
               {data.name}
             </option>
           ))}
@@ -204,6 +208,23 @@ function FormCreateHotel({ onclose, data }) {
             id="photos"
             multiple
             onChange={handleFileChange}
+            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+          />
+        </div>
+        <div className="grid grid-cols-1 gap-6">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
+            slug
+          </label>
+          <input
+            type="text"
+            name="slug"
+            id="slug"
+            value={formData.slug}
+            onChange={handleChange}
+            placeholder="Hotel slug"
             className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>

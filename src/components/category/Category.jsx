@@ -16,7 +16,8 @@ function Category() {
   const handleButtonClick = () => {
     setShowMaps(!showMaps);
   };
-
+  console.log(showCategory);
+  
   useEffect(() => {
     fetchCategories();
 
@@ -42,8 +43,8 @@ function Category() {
     setShowCategory(data);
     setSelectedCategory(id);
     if (showMaps) {
-      setShowMaps(false); 
-      setTimeout(() => setShowMaps(true), 0); 
+      setShowMaps(false);
+      setTimeout(() => setShowMaps(true), 0);
     }
   };
 
@@ -89,10 +90,7 @@ function Category() {
                   : ""
               }`}
             >
-              <p className="text-sm font-medium ">
-                {category.name}
-
-              </p>
+              <p className="text-sm font-medium ">{category.name}</p>
             </button>
           </div>
         ))}

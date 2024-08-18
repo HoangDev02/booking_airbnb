@@ -5,7 +5,7 @@ import { format, differenceInDays } from "date-fns"; // Import differenceInDays 
 import { Link } from "react-router-dom";
 
 function FormBookingRoomDetail({ data }) {
-  console.log("data" , data);
+  console.log("data", data);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
@@ -31,7 +31,7 @@ function FormBookingRoomDetail({ data }) {
       };
     });
   };
-  
+
   const calculateTotalPrice = () => {
     const { startDate, endDate } = dates[0];
     const numDays = differenceInDays(endDate, startDate); // Calculate number of days
@@ -41,12 +41,12 @@ function FormBookingRoomDetail({ data }) {
     setShowBookingForm(!showBookingForm);
   };
   return (
-    <div className="">
-      <div className=" bg-white border border-blue-100 shadow rounded-md ml-[20rem] p-2 sticky top-[7rem] ">
-        <h2 className="font-bold mb-3">
-          ${data.cheapestPrice}/ <span>đêm</span>
+    <div className="relative">
+      <div className=" bg-white border border-blue-100 shadow-lg rounded-md ml-[20rem] p-2 sticky top-[7rem] ">
+        <h2 className="text-xl font-bold mb-4">
+          ${data.cheapestPrice} <span className="text-gray-500">/ đêm</span>
         </h2>
-        <div className="">
+        <div className="space-y-4">
           <div className="block items-center mb-2">
             <button
               onClick={() => setOpenDate(!openDate)}
@@ -162,27 +162,27 @@ function FormBookingRoomDetail({ data }) {
             </div>
           </div>
         </div>
-         
+
         <button
           onClick={() => setShowBookingForm(!showBookingForm)}
           className="bg-red-600 text-white font-semibold py-2 px-4 rounded-md mt-4 hover:bg-red-700 w-[100%]"
-        > 
-        <Link
-          to={`/booking?hotelId=${data.id}&checkin=${format(
-            dates[0].startDate,
-            "yyyy-MM-dd"
-          )}&checkout=${format(
-            dates[0].endDate,
-            "yyyy-MM-dd"
-          )}&numberOfGuests=${
-            options.adult + options.children
-          }&numberOfAdults=${options.adult}&numberOfChildren=${
-            options.children
-          }&leave=${data.userId}`}
-          className="text-sm text-gray-500"
         >
-          Booking now
-        </Link>
+          <Link
+            to={`/booking?hotelId=${data.id}&checkin=${format(
+              dates[0].startDate,
+              "yyyy-MM-dd"
+            )}&checkout=${format(
+              dates[0].endDate,
+              "yyyy-MM-dd"
+            )}&numberOfGuests=${
+              options.adult + options.children
+            }&numberOfAdults=${options.adult}&numberOfChildren=${
+              options.children
+            }&leave=${data.userId}`}
+            className="text-sm text-gray-500"
+          >
+            Booking now
+          </Link>
         </button>
         <div className="flex justify-between b p-1 bg-white">
           <p className="text-sm text-gray-700">
@@ -199,7 +199,6 @@ function FormBookingRoomDetail({ data }) {
           <p className="text-sm text-gray-700">Phí dịch vụ</p>
           <p className="text-sm text-gray-700">$5</p>
         </div>
-        {/* {showBookingForm && <BookingForm data={data} onClick={handleShowBookingForm}/>} */}
       </div>
     </div>
   );

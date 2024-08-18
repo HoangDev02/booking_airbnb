@@ -1,4 +1,3 @@
-
 import "./header.css";
 import { DateRange } from "react-date-range";
 import { useEffect, useState } from "react";
@@ -42,8 +41,8 @@ const Header = ({ onSearch }) => {
 
   const formatDateToString = (dateObj) => {
     const year = dateObj.getFullYear();
-    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Thêm số 0 đằng trước nếu cần
-    const date = String(dateObj.getDate()).padStart(2, '0'); // Thêm số 0 đằng trước nếu cần
+    const month = String(dateObj.getMonth() + 1).padStart(2, "0"); // Thêm số 0 đằng trước nếu cần
+    const date = String(dateObj.getDate()).padStart(2, "0"); // Thêm số 0 đằng trước nếu cần
     return `${year}-${month}-${date}`;
   };
 
@@ -62,10 +61,11 @@ const Header = ({ onSearch }) => {
     }
 
     const formattedDates = formatDatesToArrayOfStrings(dates);
-    navigate(`/search?city=${destination}&startDate=${formattedDates[0].startDate}&endDate=${formattedDates[0].endDate}&adult=${options.adult}&children=${options.children}`);
+    navigate(
+      `/search?city=${destination}&startDate=${formattedDates[0].startDate}&endDate=${formattedDates[0].endDate}&adult=${options.adult}&children=${options.children}`
+    );
     onSearch({ destination, dates, options });
   };
-
   return (
     <div className="header mt-10">
       <div className="headerSearch">
@@ -87,7 +87,9 @@ const Header = ({ onSearch }) => {
                   className="text-black"
                   onClick={() => setOpenDate(!openDate)}
                 >
-                  {dates[0].startDate ? format(dates[0].startDate, "MM/dd/yyyy") : "Chọn ngày"}
+                  {dates[0].startDate
+                    ? format(dates[0].startDate, "MM/dd/yyyy")
+                    : "Chọn ngày"}
                 </span>
               </div>
             </div>
@@ -99,7 +101,9 @@ const Header = ({ onSearch }) => {
                   className="text-black"
                   onClick={() => setOpenDate(!openDate)}
                 >
-                  {dates[0].endDate ? format(dates[0].endDate, "MM/dd/yyyy") : "Chọn ngày"}
+                  {dates[0].endDate
+                    ? format(dates[0].endDate, "MM/dd/yyyy")
+                    : "Chọn ngày"}
                 </span>
               </div>
             </div>

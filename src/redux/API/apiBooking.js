@@ -1,16 +1,20 @@
 import axios from "axios";
-export const getbookingLeaveById = async (id) => {
+export const getbookingLeaveById = async (accessToken) => {
     try {
-        const reponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/booking/find/${id}`);
+        const reponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}api/booking/find/leave`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            }
+        });
         // console.log(reponse.data);
         return reponse.data;
     } catch (error) {
         console.log(error);
     }
 }
-export const accessBooking = async (data) => {
+export const accessBooking = async (bookingId,data) => {
     try {
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}api/orders/accessBooking`, data);
+        const response = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}api/booking/access-booking/${bookingId}`, data);
         return response.data;
     } catch (error) {
         console.log(error);

@@ -11,8 +11,10 @@ import { useEffect, useRef, useState } from "react";
 import Login from "../../pages/login/Login";
 import Register from "../../pages/register/Register";
 import Header from "../header/Header";
+import { getUsersById } from "../../redux/API/apiUser";
 const Navbar = () => {
   const user = useSelector((state) => state.auth.login.currentUser);
+  const [isUser, setIsUser] = useState("");
   const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [isOpenRegister, setIsOpenRegister] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +58,20 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     }
   }, []);
-
+  useEffect(() => {
+    console.log(user.userId);
+    
+    const fetchUser = async () => {
+      try {
+        const reponse = await getUsersById(user.userId)
+        setIsUser(reponse);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUser()
+  }, []);
+  
   return (
     <div className={`container-fluid flex ${isSticky ? 'sticky top-0 bg-white z-999 shadow-md h-[5rem] transition-all duration-200 ease-in-out' : 'transition-all duration-300 ease-in-out'}`} >
       <div className="flex  align-items-center w-[100%]" >
@@ -75,9 +90,17 @@ const Navbar = () => {
               <li className="ml-10 navbar-hover ">Trải nghiệm</li>
             </ul>
           </div>
-        <div className="basis-1/6">
-          <Link className="navbar-hover">Cho thuê chổ ở qua Airbnb</Link>
-        </div>
+         {
+          isUser.roleId === 3 ? (
+            <div className="basis-1/6">
+            <Link className="navbar-hover" to={"/hosting"}>Đón tiếp khách</Link>
+          </div>
+          ):(
+          <div className="basis-1/6">
+            <Link className="navbar-hover" to={"/host/homes"}>Cho thuê chổ ở qua Airbnb</Link>
+          </div>
+          )
+         }
         {user ? (
           <div className="basis-1/7 border-2 rounded-xl " ref={menuRef}>
             <div className="flex justify-center">
