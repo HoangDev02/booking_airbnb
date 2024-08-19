@@ -7,13 +7,12 @@ import "leaflet-search/dist/leaflet-search.src.css";
 import { getAllHotels } from "../../redux/API/apiHotel";
 import { useDispatch, useSelector } from "react-redux";
 import FormCreateHotel from "../formHotel/FormCreateHotel";
-import { set } from "date-fns";
 
 function HotelRentalPage() {
   const defaultPosition = [21.0283334, 105.854041]; // Default map position
   const dispatch = useDispatch();
   const listHotel = useSelector((state) => state.hotels.hotels.hotel);
-
+  
   // Custom Marker icon
   const myIcon = L.icon({
     iconUrl:
@@ -101,7 +100,7 @@ function HotelRentalPage() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen container">
       {!showForm ? (
         <div className="w-full p-4 relative flex flex-col items-center">
           <div className="w-full h-full rounded-lg shadow-lg border-2 border-gray-300 overflow-hidden">

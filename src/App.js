@@ -20,6 +20,7 @@ import HotelRentalPage from "./pages/HotelRental/HotelRentalPage";
 import ListleaveHotelPage from "./pages/listLeaveHotel/ListleaveHotelPage";
 import VnPayReturn from "./pages/vnpay/VnPayReturn";
 import LeasePage from "./pages/leasePage/LeasePage";
+import AccommodationType from "./pages/accommodation/AccommodationPage";
 function App() {
   return (
     <BrowserRouter>
@@ -38,9 +39,10 @@ function App() {
         <Route path="/leave/hotel" element={<ListleaveHotelPage/>}/>
         <Route path="/category" element={<CategoryList/>}/>
         <Route path="/Booking" element={<BookingPage/>}/>
-        <Route path="/host/homes" element={<HotelRentalPage/>}/>
+        <Route path="/host/homes" element={<AccommodationType/>}/>
+        <Route path="/host/map" element={<HotelRentalPage/>}/>
         <Route path="/vnpay/return?" element={<VnPayReturn/>}/>
-      
+        
         {/* lease */}
         <Route path="/hosting" element={<LeasePage/>}/>
       </Routes>

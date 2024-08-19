@@ -22,7 +22,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let axiosJWTLOGOUT = createAxios(user, dispatch, logoutSuccess);
-  const accessToken = user?.accessToken;
+  const accessToken = user?.access_token;
   const menuRef = useRef(null);
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -59,11 +59,10 @@ const Navbar = () => {
     }
   }, []);
   useEffect(() => {
-    console.log(user.userId);
     
     const fetchUser = async () => {
       try {
-        const reponse = await getUsersById(user.userId)
+        const reponse = await getUsersById(accessToken)
         setIsUser(reponse);
       } catch (error) {
         console.log(error);
